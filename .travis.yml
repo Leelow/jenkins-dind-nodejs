@@ -8,9 +8,9 @@ install:
   - docker run --name jenkins --privileged -d -p 127.0.0.1:8080:8080 -v /srv/jenkins:/var/jenkins_home jenkins-dind-nodejs:latest
 
 script:
-  - docker ps | grep -q jenkins
-  - docker exec jenkins docker ps | grep "CONTAINER"
-  - docker exec jenkins node -v | grep v
-  - docker exec jenkins npm -v | grep v
-  - sleep 30 && curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"
+  - docker ps | grep jenkins                                            # container
+  - docker exec jenkins docker ps | grep "CONTAINER"                    # docker daemon
+  - docker exec jenkins node -v | grep v                                # node
+  - docker exec jenkins npm -v | grep v                                 # npm
+  - sleep 30 && curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"   # jenkins web interface
   
