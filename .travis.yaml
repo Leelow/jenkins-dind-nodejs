@@ -7,4 +7,5 @@ install:
 
 script:
   - docker ps | grep -q jenkins
-  - curl -slI http://10.8.0.1:8081 | grep "HTTP/1.1 403"
+  - curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"
+  
