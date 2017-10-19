@@ -1,5 +1,7 @@
+sudo: required
 language: bash
-services: docker
+services:
+  - docker
 
 install:
   - docker build -t jenkins-dind-nodejs .
