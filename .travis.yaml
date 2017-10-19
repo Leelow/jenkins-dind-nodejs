@@ -1,0 +1,10 @@
+language: bash
+services: docker
+
+install:
+  - docker build -t jenkins-dind-nodejs .
+  - docker run --name jenkins --privileged -d -p 127.0.0.1:8080:8080 -v /srv/jenkins:/var/jenkins_home jenkins-dind-nodejs:latest
+
+script:
+  - docker ps | grep -q jenkins
+  - curl -slI http://10.8.0.1:8081 | grep "HTTP/1.1 403"
