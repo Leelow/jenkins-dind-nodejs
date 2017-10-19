@@ -9,8 +9,8 @@ install:
 
 script:
   - docker ps | grep -q jenkins
-  - docker exec jenkins docker ps | grep -q CONTAINER
-  - docker exec jenkins node -v | grep -q v
-  - docker exec jenkins npm -v | grep -q v
-  - sleep 30 && curl -slI http://127.0.0.1:8080 | grep -q "HTTP/1.1 403"
+  - docker exec jenkins docker ps | grep "CONTAINER"
+  - docker exec jenkins node -v | grep v
+  - docker exec jenkins npm -v | grep v
+  - sleep 30 && curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"
   
