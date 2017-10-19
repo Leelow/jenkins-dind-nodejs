@@ -9,7 +9,7 @@ install:
 
 script:
   - docker ps | grep jenkins                                            # container
-  - docker exec jenkins docker ps | grep "CONTAINER"                    # docker daemon
+  - sleep 5 && docker exec jenkins docker ps | grep "CONTAINER"         # docker daemon
   - docker exec jenkins node -v | grep v                                # node
   - docker exec jenkins npm -v | grep v                                 # npm
   - sleep 30 && curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"   # jenkins web interface
