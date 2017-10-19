@@ -1,0 +1,16 @@
+sudo: required
+language: bash
+services:
+  - docker
+
+install:
+  - docker build -t jenkins-dind-nodejs .
+  - docker run --name jenkins --privileged -d -p 127.0.0.1:8080:8080 -v /srv/jenkins:/var/jenkins_home jenkins-dind-nodejs:latest
+
+script:
+  - docker ps | grep jenkins                                            # container
+  - sleep 5 && docker exec jenkins docker ps | grep "CONTAINER"         # docker daemon
+  - docker exec jenkins node -v | grep v                                # node
+  - docker exec jenkins npm -v | grep .                                 # npm
+  - sleep 30 && curl -slI http://127.0.0.1:8080 | grep "HTTP/1.1 403"   # jenkins web interface
+  
