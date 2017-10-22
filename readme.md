@@ -46,5 +46,5 @@ docker build -t jenkins-dind-nodejs .
 
 [travis-image]: https://travis-ci.org/Leelow/jenkins-dind-nodejs.svg?branch=master
 [travis-url]: https://travis-ci.org/Leelow/jenkins-dind-nodejs
-[docker-image]: https://images.microbadger.com/badges/image/leelow29/jenkins-dind-nodejs.svg
+[docker-image]: https://img.shields.io/docker/build/leelow29/jenkins-dind-nodejs.svg
 [docker-url]: https://hub.docker.com/r/leelow29/jenkins-dind-nodejs/
