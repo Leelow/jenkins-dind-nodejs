@@ -55,12 +55,17 @@ RUN pip install -r /tmp/requirements.txt
 COPY ./files/docker /
 RUN chmod +x /docker-entrypoint /usr/local/bin/*
 
-# Install Node.js v8.x and build tools
+# Install Node.js v8.x and build tools (including npm)
 RUN apt-get update 
 RUN apt-get install -y sudo
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
 RUN sudo apt-get install -y nodejs
 RUN sudo apt-get install -y build-essential
+
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN sudo apt-get update && sudo apt-get install yarn
 
 # Expose Jenkins port
 EXPOSE 8080
